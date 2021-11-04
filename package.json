@@ -1,10 +1,10 @@
 {
-  "name": "svgedit",
+  "name": "@texthelp/svgedit",
   "version": "0.0.19",
   "description": "Powerful SVG-Editor on your browser",
   "main": "dist/svgedit.js",
   "publishConfig": {
-    "registry": "https://npm.texthelp.com"
+    "registry": "https://pkgs.dev.azure.com/texthelp-ltd/_packaging/texthelp/npm/registry/"
   },
   "directories": {
     "doc": "docs",
