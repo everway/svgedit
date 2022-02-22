@@ -39,7 +39,7 @@ const svgWhiteList_ = {
   filter: ['color-interpolation-filters', 'filterRes', 'filterUnits', 'height', 'primitiveUnits', 'requiredFeatures', 'width', 'x', 'xlink:href', 'y'],
   foreignObject: ['font-size', 'height', 'opacity', 'requiredFeatures', 'width', 'x', 'y'],
   g: ['clip-path', 'clip-rule', 'fill', 'fill-opacity', 'fill-rule', 'filter', 'mask', 'opacity', 'requiredFeatures', 'stroke', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke-width', 'systemLanguage', 'font-family', 'font-size', 'font-style', 'font-weight', 'text-anchor'],
-  image: ['clip-path', 'clip-rule', 'filter', 'height', 'mask', 'opacity', 'requiredFeatures', 'systemLanguage', 'width', 'x', 'xlink:href', 'xlink:title', 'y'],
+  image: ['clip-path', 'clip-rule', 'filter', 'height', 'mask', 'opacity', 'requiredFeatures', 'systemLanguage', 'width', 'x', 'xlink:href', 'xlink:title', 'y', 'preserveAspectRatio'],
   line: ['clip-path', 'clip-rule', 'fill', 'fill-opacity', 'fill-rule', 'filter', 'marker-end', 'marker-mid', 'marker-start', 'mask', 'opacity', 'requiredFeatures', 'stroke', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin', 'stroke-miterlimit', 'stroke-opacity', 'stroke-width', 'systemLanguage', 'x1', 'x2', 'y1', 'y2'],
   linearGradient: ['gradientTransform', 'gradientUnits', 'requiredFeatures', 'spreadMethod', 'systemLanguage', 'x1', 'x2', 'xlink:href', 'y1', 'y2'],
   marker: ['markerHeight', 'markerUnits', 'markerWidth', 'orient', 'preserveAspectRatio', 'refX', 'refY', 'se_type', 'systemLanguage', 'viewBox'],

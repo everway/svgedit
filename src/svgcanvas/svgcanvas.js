@@ -64,7 +64,8 @@ import {
   $click,
   getFeGaussianBlur,
   stringToHTML,
-  insertChildAtIndex
+  insertChildAtIndex,
+  text2xml
 } from './utilities.js'
 import {
   matrixMultiply,
@@ -266,7 +267,7 @@ class SvgCanvas {
     container.addEventListener('mousedown', this.mouseDownEvent)
     container.addEventListener('mousemove', this.mouseMoveEvent)
     $click(container, handleLinkInCanvas)
-    container.addEventListener('dblclick', this.dblClickEvent)
+    // container.addEventListener('dblclick', this.dblClickEvent)
     container.addEventListener('mouseup', this.mouseUpEvent)
     container.addEventListener('mouseleave', this.mouseOutEvent)
     container.addEventListener('mousewheel', this.DOMMouseScrollEvent)
@@ -1329,6 +1330,7 @@ class SvgCanvas {
     this.encode64 = encode64
     this.decode64 = decode64
     this.mergeDeep = mergeDeep
+    this.text2xml = text2xml
   }
 } // End class
 

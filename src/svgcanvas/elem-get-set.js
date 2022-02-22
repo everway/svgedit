@@ -372,7 +372,7 @@ const setColorMethod = (type, val, preventUndo) => {
 * @returns {void}
 */
   const addNonG = (e) => {
-    if (e.nodeName !== 'g') {
+    if (e.nodeName !== 'g' && !(e.dataset.preventPaint && e.dataset.preventPaint === 'true')) {
       elems.push(e)
     }
   }

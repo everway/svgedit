@@ -34,7 +34,7 @@ export const init = (canvas) => {
   svgCanvas = canvas
   svgCanvas.mouseDownEvent = mouseDownEvent
   svgCanvas.mouseMoveEvent = mouseMoveEvent
-  svgCanvas.dblClickEvent = dblClickEvent
+  // svgCanvas.dblClickEvent = dblClickEvent
   svgCanvas.mouseUpEvent = mouseUpEvent
   svgCanvas.mouseOutEvent = mouseOutEvent
   svgCanvas.DOMMouseScrollEvent = DOMMouseScrollEvent
@@ -275,7 +275,7 @@ const mouseMoveEvent = (evt) => {
       }
 
       translateOrigin.setTranslate(-(left + tx), -(top + ty))
-      if (evt.shiftKey) {
+      if (evt.shiftKey || (selected.dataset.keepAspectRatio && selected.dataset.keepAspectRatio === "true")) {
         if (sx === 1) {
           sx = sy
         } else { sy = sx }

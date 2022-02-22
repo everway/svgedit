@@ -82,7 +82,7 @@ const moveToTopSelectedElem = () => {
     // event handler.
     if (oldNextSibling !== t.nextSibling) {
       svgCanvas.addCommandToHistory(
-        new MoveElementCommand(t, oldNextSibling, oldParent, 'top')
+          new MoveElementCommand(t, oldNextSibling, oldParent, 'top')
       )
       svgCanvas.call('changed', [t])
     }
@@ -116,7 +116,7 @@ const moveToBottomSelectedElem = () => {
     // event handler.
     if (oldNextSibling !== t.nextSibling) {
       svgCanvas.addCommandToHistory(
-        new MoveElementCommand(t, oldNextSibling, oldParent, 'bottom')
+          new MoveElementCommand(t, oldNextSibling, oldParent, 'bottom')
       )
       svgCanvas.call('changed', [t])
     }
@@ -143,7 +143,7 @@ const moveUpDownSelected = dir => {
   let foundCur
   // jQuery sorts this list
   const list = svgCanvas.getIntersectionList(
-    getStrokedBBoxDefaultVisible([selected])
+      getStrokedBBoxDefaultVisible([selected])
   )
   if (dir === 'Down') {
     list.reverse()
@@ -177,7 +177,7 @@ const moveUpDownSelected = dir => {
   // event handler.
   if (oldNextSibling !== t.nextSibling) {
     svgCanvas.addCommandToHistory(
-      new MoveElementCommand(t, oldNextSibling, oldParent, 'Move ' + dir)
+        new MoveElementCommand(t, oldNextSibling, oldParent, 'Move ' + dir)
     )
     svgCanvas.call('changed', [t])
   }
@@ -228,9 +228,9 @@ const moveSelectedElements = (dx, dy, undoable = true) => {
       }
 
       svgCanvas
-        .gettingSelectorManager()
-        .requestSelector(selected)
-        .resize()
+          .gettingSelectorManager()
+          .requestSelector(selected)
+          .resize()
     }
   })
   if (!batchCmd.isEmpty()) {
@@ -336,20 +336,20 @@ const alignSelectedElements = (type, relativeTo) => {
     switch (relativeTo) {
       case 'smallest':
         if (
-          ((type === 'l' ||
-            type === 'c' ||
-            type === 'r' ||
-            type === 'left' ||
-            type === 'center' ||
-            type === 'right') &&
-            (curwidth === Number.MIN_VALUE || curwidth > bboxes[i].width)) ||
-          ((type === 't' ||
-            type === 'm' ||
-            type === 'b' ||
-            type === 'top' ||
-            type === 'middle' ||
-            type === 'bottom') &&
-            (curheight === Number.MIN_VALUE || curheight > bboxes[i].height))
+            ((type === 'l' ||
+                    type === 'c' ||
+                    type === 'r' ||
+                    type === 'left' ||
+                    type === 'center' ||
+                    type === 'right') &&
+                (curwidth === Number.MIN_VALUE || curwidth > bboxes[i].width)) ||
+            ((type === 't' ||
+                    type === 'm' ||
+                    type === 'b' ||
+                    type === 'top' ||
+                    type === 'middle' ||
+                    type === 'bottom') &&
+                (curheight === Number.MIN_VALUE || curheight > bboxes[i].height))
         ) {
           minx = bboxes[i].x
           miny = bboxes[i].y
@@ -361,20 +361,20 @@ const alignSelectedElements = (type, relativeTo) => {
         break
       case 'largest':
         if (
-          ((type === 'l' ||
-            type === 'c' ||
-            type === 'r' ||
-            type === 'left' ||
-            type === 'center' ||
-            type === 'right') &&
-            (curwidth === Number.MIN_VALUE || curwidth < bboxes[i].width)) ||
-          ((type === 't' ||
-            type === 'm' ||
-            type === 'b' ||
-            type === 'top' ||
-            type === 'middle' ||
-            type === 'bottom') &&
-            (curheight === Number.MIN_VALUE || curheight < bboxes[i].height))
+            ((type === 'l' ||
+                    type === 'c' ||
+                    type === 'r' ||
+                    type === 'left' ||
+                    type === 'center' ||
+                    type === 'right') &&
+                (curwidth === Number.MIN_VALUE || curwidth < bboxes[i].width)) ||
+            ((type === 't' ||
+                    type === 'm' ||
+                    type === 'b' ||
+                    type === 'top' ||
+                    type === 'middle' ||
+                    type === 'bottom') &&
+                (curheight === Number.MIN_VALUE || curheight < bboxes[i].height))
         ) {
           minx = bboxes[i].x
           miny = bboxes[i].y
@@ -506,7 +506,7 @@ const deleteSelectedElements = () => {
 const copySelectedElements = () => {
   const selectedElements = svgCanvas.getSelectedElements()
   const data = JSON.stringify(
-    selectedElements.map(x => svgCanvas.getJsonFromSvgElements(x))
+      selectedElements.map(x => svgCanvas.getJsonFromSvgElements(x))
   )
   // Use sessionStorage for the clipboard data.
   sessionStorage.setItem(svgCanvas.getClipboardID(), data)
@@ -568,8 +568,8 @@ const groupSelectedElements = (type, urlArg) => {
     }
 
     if (
-      elem.parentNode.tagName === 'a' &&
-      elem.parentNode.childNodes.length === 1
+        elem.parentNode.tagName === 'a' &&
+        elem.parentNode.childNodes.length === 1
     ) {
       elem = elem.parentNode
     }
@@ -578,7 +578,7 @@ const groupSelectedElements = (type, urlArg) => {
     const oldParent = elem.parentNode
     g.append(elem)
     batchCmd.addSubCommand(
-      new MoveElementCommand(elem, oldNextSibling, oldParent)
+        new MoveElementCommand(elem, oldNextSibling, oldParent)
     )
   }
   if (!batchCmd.isEmpty()) {
@@ -635,8 +635,8 @@ const pushGroupProperty = (g, undoable) => {
     if (gattrs.opacity !== null && gattrs.opacity !== 1) {
       // const c_opac = elem.getAttribute('opacity') || 1;
       const newOpac =
-        Math.round((elem.getAttribute('opacity') || 1) * gattrs.opacity * 100) /
-        100
+          Math.round((elem.getAttribute('opacity') || 1) * gattrs.opacity * 100) /
+          100
       svgCanvas.changeSelectedAttribute('opacity', newOpac, [elem])
     }
 
@@ -667,12 +667,12 @@ const pushGroupProperty = (g, undoable) => {
           const blurElem = getFeGaussianBlur(gfilter)
           // Change this in future for different filters
           const suffix =
-            blurElem?.tagName === 'feGaussianBlur' ? 'blur' : 'filter'
+              blurElem?.tagName === 'feGaussianBlur' ? 'blur' : 'filter'
           gfilter.id = elem.id + '_' + suffix
           svgCanvas.changeSelectedAttribute(
-            'filter',
-            'url(#' + gfilter.id + ')',
-            [elem]
+              'filter',
+              'url(#' + gfilter.id + ')',
+              [elem]
           )
         }
       } else {
@@ -733,9 +733,9 @@ const pushGroupProperty = (g, undoable) => {
         const cbox = utilsGetBBox(elem)
         const ceqm = transformListToTransform(chtlist).matrix
         const coldc = transformPoint(
-          cbox.x + cbox.width / 2,
-          cbox.y + cbox.height / 2,
-          ceqm
+            cbox.x + cbox.width / 2,
+            cbox.y + cbox.height / 2,
+            ceqm
         )
 
         // sum group and child's angles
@@ -871,11 +871,11 @@ const convertToGroup = elem => {
 
     // Remove <use> element
     batchCmd.addSubCommand(
-      new RemoveElementCommand(
-        $elem,
-        $elem.nextElementSibling,
-        $elem.parentNode
-      )
+        new RemoveElementCommand(
+            $elem,
+            $elem.nextElementSibling,
+            $elem.parentNode
+        )
     )
     $elem.remove()
 
@@ -897,7 +897,7 @@ const convertToGroup = elem => {
     if (isGecko()) {
       const svgElement = findDefs()
       const gradients = svgElement.querySelectorAll(
-        'linearGradient,radialGradient,pattern'
+          'linearGradient,radialGradient,pattern'
       )
       for (let i = 0, im = gradients.length; im > i; i++) {
         g.appendChild(gradients[i].cloneNode(true))
@@ -916,7 +916,7 @@ const convertToGroup = elem => {
     if (isGecko()) {
       const svgElement = findDefs()
       const elements = g.querySelectorAll(
-        'linearGradient,radialGradient,pattern'
+          'linearGradient,radialGradient,pattern'
       )
       for (let i = 0, im = elements.length; im > i; i++) {
         svgElement.appendChild(elements[i])
@@ -934,7 +934,7 @@ const convertToGroup = elem => {
         const { nextSibling } = elem
         elem.remove()
         batchCmd.addSubCommand(
-          new RemoveElementCommand(elem, nextSibling, parent)
+            new RemoveElementCommand(elem, nextSibling, parent)
         )
       }
       batchCmd.addSubCommand(new InsertElementCommand(g))
@@ -1032,7 +1032,7 @@ const ungroupSelectedElement = () => {
       if (elem.tagName === 'title') {
         const { nextSibling } = elem
         batchCmd.addSubCommand(
-          new RemoveElementCommand(elem, nextSibling, oldParent)
+            new RemoveElementCommand(elem, nextSibling, oldParent)
         )
         elem.remove()
         continue
@@ -1040,7 +1040,7 @@ const ungroupSelectedElement = () => {
 
       children[i++] = parent.insertBefore(elem, anchor)
       batchCmd.addSubCommand(
-        new MoveElementCommand(elem, oldNextSibling, oldParent)
+          new MoveElementCommand(elem, oldNextSibling, oldParent)
       )
     }
 
@@ -1102,8 +1102,8 @@ const updateCanvas = (w, h) => {
   }
 
   svgCanvas.selectorManager.selectorParentGroup.setAttribute(
-    'transform',
-    'translate(' + x + ',' + y + ')'
+      'transform',
+      'translate(' + x + ',' + y + ')'
   )
 
   /**
@@ -1118,18 +1118,18 @@ const updateCanvas = (w, h) => {
    * @property {Integer} d_y
    */
   svgCanvas.runExtensions(
-    'canvasUpdated',
-    /**
-     * @type {module:svgcanvas.SvgCanvas#event:ext_canvasUpdated}
-     */
-    {
-      new_x: x,
-      new_y: y,
-      old_x: oldX,
-      old_y: oldY,
-      d_x: x - oldX,
-      d_y: y - oldY
-    }
+      'canvasUpdated',
+      /**
+       * @type {module:svgcanvas.SvgCanvas#event:ext_canvasUpdated}
+       */
+      {
+        new_x: x,
+        new_y: y,
+        old_x: oldX,
+        old_y: oldY,
+        d_x: x - oldX,
+        d_y: y - oldY
+      }
   )
   return { x, y, old_x: oldX, old_y: oldY, d_x: x - oldX, d_y: y - oldY }
 }
@@ -1147,7 +1147,7 @@ const cycleElement = next => {
   const curElem = selectedElements[0]
   let elem = false
   const allElems = getVisibleElements(
-    currentGroup || svgCanvas.getCurrentDrawing().getCurrentLayer()
+      currentGroup || svgCanvas.getCurrentDrawing().getCurrentLayer()
   )
   if (!allElems.length) {
     return
