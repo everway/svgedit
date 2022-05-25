@@ -7,24 +7,25 @@ import pkg from "./package.json";
 export default {
   input: "src/svgcanvas/svgcanvas.js",
   output: [
-    {
+   {
       file: pkg.main,
-      //dir: "./dist",
-      format: "es",
+      format: "cjs",
+      exports: "named",
       inlineDynamicImports: true,
       sourcemap: true
     },
-    /* {
-        file: pkg.module,
-        format: "umd",
-        inlineDynamicImports: true,
-        name: "svgedit-wrapper"
-    } */
+    {
+      file: pkg.module,
+      format: "es",
+      inlineDynamicImports: true,
+      exports: "named",
+      sourcemap: true
+    }
   ],
-  /*  external: [
+  external: [
       ...Object.keys(pkg.dependencies || {}),
       ...Object.keys(pkg.peerDependencies || {}),
-  ], */
+  ],
   plugins: [
     nodeResolve(),
     babel(),

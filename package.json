@@ -1,8 +1,8 @@
 {
   "name": "@texthelp/svgedit",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.1",
   "description": "Powerful SVG-Editor for your browser ",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "directories": {
     "doc": "docs",
@@ -18,7 +18,7 @@
   "scripts": {
     "lint": "standard .",
     "test": "run-s cypress:instrument cypress:test",
-    "build": "rollup -c",
+    "build": "rollup -c && tsc --declaration --emitDeclarationOnly",
     "build:watch": "rollup -c --watch",
     "start": "web-dev-server --app-index src/editor/index.html --open --node-resolve",
     "start:test": "web-dev-server --app-index src/editor/index.html --node-resolve",
@@ -142,6 +142,7 @@
     "rollup-plugin-re": "1.0.7",
     "rollup-plugin-terser": "7.0.2",
     "standard": "16.0.4",
-    "start-server-and-test": "1.14.0"
+    "start-server-and-test": "1.14.0",
+    "typescript": "^4.6.4"
   }
 }
