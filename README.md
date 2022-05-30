@@ -1,49 +1,80 @@
-![alt text](https://svg-edit.github.io/svgedit/images/logo48x48.svg "svg-edit logo of a pencil") SVG-edit 
-===
-SVG-edit is a fast, web-based, javascript-driven SVG drawing editor that works in any modern browser.
+<img src="https://svg-edit.github.io/svgedit/src/editor/images/logo.svg" width="50" height="50" />
 
-### [Try SVG-edit here](https://svg-edit.github.io/svgedit/releases/svg-edit-2.8.1/svg-editor.html)
+# SVGEdit
 
-(Also available as a [download](https://github.com/SVG-Edit/svgedit/releases/download/svg-edit-2.8.1/svg-edit-2.8.1.zip) in [releases](https://github.com/SVG-Edit/svgedit/releases)).
+[![npm](https://img.shields.io/npm/v/svgedit.svg)](https://www.npmjs.com/package/svgedit)
+[![Actions Status](https://github.com/SVG-Edit/svgedit/workflows/Node%20CI/badge.svg)](https://github.com/SVG-Edit/svgedit/actions)
+[![Known Vulnerabilities](https://snyk.io/test/github/SVG-Edit/svgedit/badge.svg)](https://snyk.io/test/github/SVG-Edit/svgedit)
+[![Total Alerts](https://img.shields.io/lgtm/alerts/g/SVG-Edit/svgedit.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/SVG-Edit/svgedit/alerts)
+[![Code Quality: Javascript](https://img.shields.io/lgtm/grade/javascript/g/SVG-Edit/svgedit.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/SVG-Edit/svgedit/context:javascript)
 
-## Recent news
-  * 2017-07 Added to Packagist: https://packagist.org/packages/svg-edit/svgedit
-  * 2015-12-02 SVG-edit 2.8.1 was released.
-  * 2015-11-24 SVG-edit 2.8 was released.
-  * 2015-11-24 Code, issue tracking, and docs are being moved to github (previously [code.google.com](https://code.google.com/p/svg-edit)).
-  * 2014-04-17 2.7 and stable branches updated to reflect 2.7.1 important bug fixes for the embedded editor.
-  * 2014-04-07 SVG-edit 2.7 was released.
-  * 2013-01-15 SVG-edit 2.6 was released.
+SVG-edit is a fast, web-based, JavaScript-driven SVG drawing editor that
+works in any modern browser.
 
-## Videos
+![screenshot](docs/screenshot.png)
+[](https://upload.wikimedia.org/wikipedia/commons/f/fd/Ghostscript_Tiger.svg)
 
-  * [SVG-edit 2.4 Part 1](http://www.youtube.com/watch?v=zpC7b1ZJvvM)
-  * [SVG-edit 2.4 Part 2](http://www.youtube.com/watch?v=mDzZEoGUDe8)
-  * [SVG-edit 2.3 Features](http://www.youtube.com/watch?v=RVIcIy5fXOc)
-  * [Introduction to SVG-edit](http://www.youtube.com/watch?v=ZJKmEI06YiY) (Version 2.2)
+## Contributions
 
+SVGEdit is the most popular open source SVG editor. It was started more than 10 years ago by a fantastic team of developers. Unfortunately, the product was not maintained for a quite long period. We decided to give this tool a new life by refreshing many aspects.
+Please let us know with an issue or a discussions if you wish to contribute.
+## Demo
+
+Thanks to **Netlify**, you can test the following builds: 
+
+### [Try SVGEdit V7 (latest build)](https://svgedit.netlify.app/editor/index.html)
+
+[Try SVGEdit V7 (latest published version)](https://unpkg.com/svgedit@latest/dist/editor/index.html)
+
+## Prior V7:
+
+[Try SVGEdit 6.1.0 here](https://60a0000fc9900b0008fd268d--svgedit.netlify.app/editor/index.html)
+
+[Try SVGEdit 5.1.0 here](https://unpkg.com/svgedit@5.1.0/editor/svg-editor.html)
+
+Additional tip: you may try a version released on NPM using unpkg for example with version 3.2.0:
+[https://unpkg.com/svgedit@3.2.0/editor/svg-editor.html](https://unpkg.com/svgedit@3.2.0/editor/svg-editor.html)
+
+## Installation
+
+### Quick install
+
+1. Clone or copy the repository contents
+1. run `npm i` to install dependencies
+1. run `npm run start` to start a local server
+1. Use your browser to access `http://localhost:8000/src/editor/index.html`
+
+### Integrating SVGEdit into your own application
+
+V7 is changing significantly the way to integrate and customize SVG-Edit. You can have a look to index.html to see how you can insert a div element into your HTML code and inject the editor into the div.
+
+SVG-Edit is made of two major components:
+1. The "svgcanvas" that takes care of the underlying svg edition. It can be used to build your own editor. See example in the demos folder or the svg-edit-react repository.
+1. The "editor" that takes care of the editor UI (menus, buttons, etc.)
+
+For earlier versions of SVGEdit, please look in their respective branches.
 ## Supported browsers
+    Developments and Continuous Integration are done with a **Chrome** environment. Chrome, FireFox and Safari recent versions are supported (in the meaning that we will try to fix bugs for these browsers).
+    Support for old browsers may require to use an older version of the package. However, please open an issue if you need support for a specific version of your browser so the project team can decide if we should support with the latest version.
 
-The following browsers had been tested for 2.6 or earlier and will probably continue to work with 2.8.
-  * Firefox 1.5+
-  * Opera 9.50+
-  * Safari 4+
-  * Chrome 1+
-  * IE 9+ and Edge
-
+## Sample extension based on React
+A sample React component was used to build a svgedit extension. 
+To activate:
+- "npm run build" from the extension folder "src/editor/react-extensions/react-test" in order to create the bundle for the extension. 
+- modify "index.html" to activate the extension as a userExtensions
+```
+svgEditor.setConfig({
+          allowInitialUserOverride: true,
+          extensions: [],
+          noDefaultExtensions: false,
+          userExtensions: ['./react-extensions/react-test/dist/react-test.js']
+        })
+```
 ## Further reading and more information
-
- * See [docs](docs/) for more documentation.
- * [Acknowledgements](docs/Acknowledgements.md) lists open source projects used in svg-edit.
+ * Participate in [discussions](https://github.com/SVG-Edit/svgedit/discussions) 
  * See [AUTHORS](AUTHORS) file for authors.
- * [Stackoverflow](http://stackoverflow.com/tags/svg-edit) group.
- * Join the [svg-edit mailing list](https://groups.google.com/forum/#!forum/svg-edit).
- * Join us on `#svg-edit` on `freenode.net` (or use the [web client](http://webchat.freenode.net/?channels=svg-edit)).
+ * [StackOverflow](https://stackoverflow.com/tags/svg-edit) group.
  
- ## Build (Windows)
- 
- With cygwin (and make) installed
- 
- `cd /cygdrive/c/<..>/svgedit`
- 
- `make compile` 
+# Hosting
+SVGedit versions are deployed to:
+[![Deploys by Netlify](https://www.netlify.com/img/global/badges/netlify-color-accent.svg)](https://www.netlify.com)

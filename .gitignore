@@ -1,8 +1,15 @@
-# See editor/config-sample.js for an example
-editor/config.js
-editor/custom.css
-build/
-dist/
-editor/svgedit.compiled.js
-node_modules/
-.idea/
+ignore
+node_modules
+docs/jsdoc
+cypress/results
+cypress/screenshots
+cypress/videos
+cypress.env.json
+coverage
+instrumented
+.nyc_output
+.vscode
+.idea
+.DS_Store
+.idea
+dist
