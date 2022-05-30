@@ -38,8 +38,7 @@
     "build-docs": "run-s -c build-docs-remove build-docs-create",
     "build-and-open-docs-no-start": "run-s build-docs open-docs-no-start",
     "build-and-open-docs": "run-s build-docs open-docs",
-    "remark": "remark -q -f .",
-    "prepublishOnly": "run-s build-docs build"
+    "remark": "remark -q -f ."
   },
   "repository": {
     "type": "git",
