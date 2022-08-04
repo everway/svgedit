@@ -117,6 +117,7 @@ export let path = null
  * @function module:path.EditorContext#addToSelection
  * @param {Element[]} elemsToAdd - An array of DOM elements to add to the selection
  * @param {boolean} showGrips - Indicates whether the resize grips should be shown
+ * @param {boolean} [noCall] - When `true`, does not call the "selected" handler
  * @returns {void}
 */
 /**

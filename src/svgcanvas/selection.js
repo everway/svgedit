@@ -68,7 +68,7 @@ const clearSelectionMethod = (noCall) => {
  * @type {module:path.EditorContext#addToSelection}
  * @fires module:selection.SvgCanvas#event:selected
  */
-const addToSelectionMethod = (elemsToAdd, showGrips) => {
+const addToSelectionMethod = (elemsToAdd, showGrips, noCall) => {
   const selectedElements = svgCanvas.getSelectedElements()
   if (!elemsToAdd.length) {
     return
@@ -113,7 +113,9 @@ const addToSelectionMethod = (elemsToAdd, showGrips) => {
   if (!selectedElements.length) {
     return
   }
-  svgCanvas.call('selected', selectedElements)
+  if (!noCall) {
+    svgCanvas.call('selected', selectedElements)
+  }
 
   if (selectedElements.length === 1) {
     svgCanvas.selectorManager
