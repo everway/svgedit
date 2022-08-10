@@ -1,6 +1,6 @@
 {
   "name": "@texthelp/svgedit",
-  "version": "1.0.0-beta.4",
+  "version": "1.0.0-beta.5",
   "description": "Powerful SVG-Editor for your browser ",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",

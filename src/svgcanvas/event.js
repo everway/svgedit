@@ -572,6 +572,7 @@ const mouseUpEvent = (evt) => {
 
   let element = getElement(svgCanvas.getId())
   let keep = false
+  let preventSelection = false
 
   const realX = x
   const realY = y
@@ -801,6 +802,7 @@ const mouseUpEvent = (evt) => {
   extResult.forEach((r) => {
     if (r) {
       keep = r.keep || keep;
+      preventSelection = r.preventSelection || preventSelection;
       ({ element } = r)
       svgCanvas.setStarted(r.started || svgCanvas.getStarted())
     }
@@ -866,7 +868,7 @@ const mouseUpEvent = (evt) => {
       cleanupElement(element)
       if (svgCanvas.getCurrentMode() === 'path') {
         svgCanvas.pathActions.toEditMode(element)
-      } else if (svgCanvas.getCurConfig().selectNew) {
+      } else if (svgCanvas.getCurConfig().selectNew && !preventSelection) {
         const modes = ['circle', 'ellipse', 'square', 'rect', 'fhpath', 'line', 'fhellipse', 'fhrect', 'star', 'polygon']
         if (modes.indexOf(svgCanvas.getCurrentMode()) !== -1) {
           svgCanvas.setMode('select')
