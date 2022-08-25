@@ -869,7 +869,7 @@ const mouseUpEvent = (evt) => {
       if (svgCanvas.getCurrentMode() === 'path') {
         svgCanvas.pathActions.toEditMode(element)
       } else if (svgCanvas.getCurConfig().selectNew && !preventSelection) {
-        const modes = ['circle', 'ellipse', 'square', 'rect', 'fhpath', 'line', 'fhellipse', 'fhrect', 'star', 'polygon']
+        const modes = ['circle', 'ellipse', 'square', 'rect', 'line', 'fhellipse', 'fhrect', 'star', 'polygon']
         if (modes.indexOf(svgCanvas.getCurrentMode()) !== -1) {
           svgCanvas.setMode('select')
         }
