@@ -7,7 +7,7 @@
  * @copyright 2010 Alexis Deveria, 2010 Pavol Rusnak, 2010 Jeff Schiller, 2021 OptimistikSAS
  *
  */
-import { Canvg as canvg } from 'canvg'
+// import { Canvg as canvg } from 'canvg'
 import 'pathseg' // SVGPathSeg Polyfill (see https://github.com/progers/pathseg)
 
 import * as pathModule from './path.js'
@@ -738,9 +738,9 @@ class SvgCanvas {
     return refAttrs
   }
 
-  getcanvg () {
-    return canvg
-  }
+  // getcanvg () {
+  //   return canvg
+  // }
 
   setCanvas (key, value) {
     this[key] = value

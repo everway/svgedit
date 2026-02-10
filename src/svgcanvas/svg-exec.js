@@ -5,8 +5,9 @@
  * @copyright 2011 Jeff Schiller
  */
 
-import { jsPDF as JsPDF } from 'jspdf/dist/jspdf.es.min.js'
-import 'svg2pdf.js/dist/svg2pdf.es.js'
+// Removing jsPDF library is causing Snyk vulnerabilities
+// import jsPDF from 'jspdf'
+// import 'svg2pdf.js'
 import html2canvas from 'html2canvas'
 import * as hstry from './history.js'
 import {
@@ -58,7 +59,8 @@ export const init = canvas => {
   svgCanvas.svgToString = svgToString // Sub function ran on each SVG element to convert it to a string as desired.
   svgCanvas.embedImage = embedImage // Converts a given image file to a data URL when possibl
   svgCanvas.rasterExport = rasterExport // Generates a PNG (or JPG, BMP, WEBP) Data URL based on the current image
-  svgCanvas.exportPDF = exportPDF // Generates a PDF based on the current image, then calls "exportedPDF"
+  // Removing exportPDF since the jsPDF library is causing Snyk vulnerabilities
+  // svgCanvas.exportPDF = exportPDF // Generates a PDF based on the current image, then calls "exportedPDF"
 }
 
 /**
@@ -920,11 +922,10 @@ const rasterExport = async (imgType, quality, WindowName, opts = {}) => {
 }
 
 /**
- * @typedef {void|"save"|"arraybuffer"|"blob"|"datauristring"|"dataurlstring"|"dataurlnewwindow"|"datauri"|"dataurl"} external:jsPDF.OutputType
+ * @typedef {void|"save"|"arraybuffer"|"blob"|"datauristring"|"dataurlstring"|"dataurlnewwindow"|"datauri"|"dataurl"}
  * @todo Newer version to add also allows these `outputType` values "bloburi"|"bloburl" which return strings, so document here and for `outputType` of `module:svgcanvas.PDFedResults` below if added
  */
 /**
- * @typedef {PlainObject} module:svgcanvas.PDFedResults
  * @property {string} svg The SVG PDF output
  * @property {string|ArrayBuffer|Blob|window} output The output based on the `outputType`;
  * if `undefined`, "datauristring", "dataurlstring", "datauri",
@@ -936,65 +937,56 @@ const rasterExport = async (imgType, quality, WindowName, opts = {}) => {
  * object; if "save", will have the same return as "dataurlnewwindow" if
  * `navigator.getUserMedia` support is found without `URL.createObjectURL` support; otherwise
  * returns `undefined` but attempts to save
- * @property {external:jsPDF.OutputType} outputType
  * @property {string[]} issues The human-readable localization messages of corresponding `issueCodes`
  * @property {module:svgcanvas.IssueCode[]} issueCodes
  * @property {string} WindowName
  */
 
-/**
- * Generates a PDF based on the current image, then calls "edPDF" with
- * an object including the string, the data URL, and any issues found.
- * @function module:svgcanvas.SvgCanvas#PDF
- * @param {string} [WindowName] Will also be used for the download file name here
- * @param {external:jsPDF.OutputType} [outputType="dataurlstring"]
- * @fires module:svgcanvas.SvgCanvas#event:edPDF
- * @returns {Promise<module:svgcanvas.PDFedResults>} Resolves to {@link module:svgcanvas.PDFedResults}
- */
-const exportPDF = async (
-  WindowName,
-  outputType = isChrome() ? 'save' : undefined
-) => {
-  const res = svgCanvas.getResolution()
-  const orientation = res.w > res.h ? 'landscape' : 'portrait'
-  const unit = 'pt' // curConfig.baseUnit; // We could use baseUnit, but that is presumably not intended for  purposes
-  const iframe = document.createElement('iframe')
-  iframe.onload = () => {
-    const iframedoc = iframe.contentDocument || iframe.contentWindow.document
-    const ele = svgCanvas.getSvgContent()
-    const cln = ele.cloneNode(true)
-    iframedoc.body.appendChild(cln)
-    setTimeout(() => {
-      // eslint-disable-next-line promise/catch-or-return
-      html2canvas(iframedoc.body, { useCORS: true, allowTaint: true }).then(
-        canvas => {
-          const imgData = canvas.toDataURL('image/png')
-          const doc = new JsPDF({
-            orientation: orientation,
-            unit: unit,
-            format: [res.w, res.h]
-          })
-          const docTitle = svgCanvas.getDocumentTitle()
-          doc.setProperties({
-            title: docTitle
-          })
-          doc.addImage(imgData, 'PNG', 0, 0, res.w, res.h)
-          iframe.parentNode.removeChild(iframe)
-          const { issues, issueCodes } = getIssues()
-          outputType = outputType || 'dataurlstring'
-          const obj = { issues, issueCodes, WindowName, outputType }
-          obj.output = doc.output(
-            outputType,
-            outputType === 'save' ? WindowName || 'svg.pdf' : undefined
-          )
-          svgCanvas.call('edPDF', obj)
-          return obj
-        }
-      )
-    }, 1000)
-  }
-  document.body.appendChild(iframe)
-}
+
+// const exportPDF = async (
+//   WindowName,
+//   outputType = isChrome() ? 'save' : undefined
+// ) => {
+//   const res = svgCanvas.getResolution()
+//   const orientation = res.w > res.h ? 'landscape' : 'portrait'
+//   const unit = 'pt' // curConfig.baseUnit; // We could use baseUnit, but that is presumably not intended for  purposes
+//   const iframe = document.createElement('iframe')
+//   iframe.onload = () => {
+//     const iframedoc = iframe.contentDocument || iframe.contentWindow.document
+//     const ele = svgCanvas.getSvgContent()
+//     const cln = ele.cloneNode(true)
+//     iframedoc.body.appendChild(cln)
+//     setTimeout(() => {
+//       // eslint-disable-next-line promise/catch-or-return
+//       html2canvas(iframedoc.body, { useCORS: true, allowTaint: true }).then(
+//         canvas => {
+//           const imgData = canvas.toDataURL('image/png')
+//           const doc = new jsPDF({
+//             orientation: orientation,
+//             unit: unit,
+//             format: [res.w, res.h]
+//           })
+//           const docTitle = svgCanvas.getDocumentTitle()
+//           doc.setProperties({
+//             title: docTitle
+//           })
+//           doc.addImage(imgData, 'PNG', 0, 0, res.w, res.h)
+//           iframe.parentNode.removeChild(iframe)
+//           const { issues, issueCodes } = getIssues()
+//           outputType = outputType || 'dataurlstring'
+//           const obj = { issues, issueCodes, WindowName, outputType }
+//           obj.output = doc.output(
+//             outputType,
+//             outputType === 'save' ? WindowName || 'svg.pdf' : undefined
+//           )
+//           svgCanvas.call('edPDF', obj)
+//           return obj
+//         }
+//       )
+//     }, 1000)
+//   }
+//   document.body.appendChild(iframe)
+// }
 /**
  * Ensure each element has a unique ID.
  * @function module:svgcanvas.SvgCanvas#uniquifyElems
